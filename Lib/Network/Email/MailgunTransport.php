@@ -4,8 +4,7 @@
  * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
  *
- * @author        Codaxis - https://github.com/codaxis
- * @link          https://github.com/Codaxis/cakephp-mailgun
+ * @link          https://github.com/silphroad/cakephp-mailgun
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 
@@ -17,18 +16,18 @@ use Mailgun\Mailgun;
  */
 class MailgunTransport extends AbstractTransport {
 
-/**
- * Configurations
- *
- * @var array
- */
+    /**
+     * Configurations
+     *
+     * @var array
+     */
     protected $_config = array();
 
-/**
- * Email header to Mailgun param mapping
- *
- * @var array
- */
+    /**
+     * Email header to Mailgun param mapping
+     *
+     * @var array
+     */
     protected $_paramMapping = array(
         'From' => 'from',
         'To' => 'to',
@@ -70,19 +69,19 @@ class MailgunTransport extends AbstractTransport {
 
     );
 
-/**
- * Send email via Mailgun
- *
- * @param CakeEmail $email
- * @return array
- * @throws Exception
- */
+    /**
+     * Send email via Mailgun
+     *
+     * @param CakeEmail $email
+     * @return array
+     * @throws Exception
+     */
     public function send(CakeEmail $email) {
         if (Configure::read('Mailgun.preventManyToRecipients') !== false && count($email->to()) > 1) {
             throw new Exception('More than one "to" recipient not allowed (set Mailgun.preventManyToRecipients = false to disable check)');
         }
 
-        $mgClient = new Mailgun($this->_config['mg_api_key']);
+        $mg = new Mailgun($this->_config['api_key'], new \Http\Adapter\Guzzle6\Client());
 
         $headersList = array('from', 'sender', 'replyTo', 'readReceipt', 'returnPath', 'to', 'cc', 'bcc', 'subject');
         $params = [];
@@ -102,7 +101,7 @@ class MailgunTransport extends AbstractTransport {
         }
 
         try {
-            $result = $mgClient->sendMessage($this->_config['mg_domain'], $params, $attachments);
+            $result = $mg->messages()->send($this->_config['domain'], $params);
             if ($result->http_response_code != 200) {
                 throw new Exception($result->http_response_body->message);
             }

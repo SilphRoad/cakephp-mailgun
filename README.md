@@ -6,13 +6,15 @@ Supports email parameters listed in http://documentation.mailgun.com/api-sending
 
 ## Requirements
 
-* PHP 5.4 or later
+* PHP 5.6 or later
 * Composer
+* CakePHP 2.x
 
 ## Installation
 
-* Install with composer by running `composer require codaxis/cakephp-mailgun:1.*`
+* Install with composer by running `composer require silphroad/cakephp-mailgun`
 * Include the plugin in your bootstrap's `CakePlugin::load('Mailgun')` or `CakePlugin::loadAll()`
+* Configure Mailgun service
 
 ## Example of configuration
 
@@ -22,14 +24,14 @@ Supports email parameters listed in http://documentation.mailgun.com/api-sending
 class EmailConfig {
 
     public $mailgun = array(
-        'transport' => 'Mailgun.Mailgun',
-        'mg_domain'    => 'my-domain.mailgun.org',
-        'mg_api_key'   => 'my-mailgun-key'
-		'from' => array('no-reply@my-app.com' => 'My App'),
+        'transport'  => 'Mailgun.Mailgun',
+        'domain'     => 'my-domain.mailgun.org',
+        'api_key'    => 'my-mailgun-key'
+        'from'       => array('no-reply@my-app.com' => 'My App'),
 
-		// Custom mailgun email, e.g.:
-        // 'o:tag' => 'tag1',
-        // 'o:campaign' => 'my-campaign',
+        // Custom mailgun settings, e.g.:
+        'o:tag'      => 'tag1',
+        'o:campaign' => 'my-campaign',
     );
 }
 ```

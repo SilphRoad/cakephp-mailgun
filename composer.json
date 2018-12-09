@@ -1,10 +1,13 @@
 {
-	"name": "codaxis/cakephp-mailgun",
-	"type": "cakephp-plugin",
-	"extra": {
-		"installer-name": "Mailgun"
-	},
-	"require": {
-		"mailgun/mailgun-php": "~1.7.1"
-	}
+    "name": "silphroad/cakephp-mailgun",
+    "type": "cakephp-plugin",
+    "extra": {
+        "installer-name": "Mailgun"
+    },
+    "require": {
+        "mailgun/mailgun-php": "~2.6.0"
+    },
+    "conflict": {
+        "codaxis/cakephp-mailgun": "*"
+    }
 }
