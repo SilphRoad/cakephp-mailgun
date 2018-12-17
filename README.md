@@ -24,10 +24,10 @@ Supports email parameters listed in http://documentation.mailgun.com/api-sending
 class EmailConfig {
 
     public $mailgun = array(
-        'transport'  => 'Mailgun.Mailgun',
-        'domain'     => 'my-domain.mailgun.org',
-        'api_key'    => 'my-mailgun-key'
-        'from'       => array('no-reply@my-app.com' => 'My App'),
+        'transport'      => 'Mailgun.Mailgun',
+        'mailgun_domain' => 'my-domain.mailgun.org',
+        'api_key'        => 'my-mailgun-key'
+        'from'           => array('no-reply@my-app.com' => 'My App'),
 
         // Custom mailgun settings, e.g.:
         'o:tag'      => 'tag1',
