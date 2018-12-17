@@ -81,7 +81,7 @@ class MailgunTransport extends AbstractTransport {
             throw new Exception('More than one "to" recipient not allowed (set Mailgun.preventManyToRecipients = false to disable check)');
         }
 
-        $mg = new Mailgun($this->_config['api_key'], new \Http\Adapter\Guzzle6\Client());
+        $mg = new Mailgun::create($this->_config['api_key']);
 
         $headersList = array('from', 'sender', 'replyTo', 'readReceipt', 'returnPath', 'to', 'cc', 'bcc', 'subject');
         $params = [];
