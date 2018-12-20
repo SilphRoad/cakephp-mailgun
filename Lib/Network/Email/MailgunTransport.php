@@ -102,9 +102,6 @@ class MailgunTransport extends AbstractTransport {
 
         try {
             $result = $mg->messages()->send($this->_config['mailgun_domain'], $params);
-            if ($result->getStatusCode() != 200) {
-                throw new Exception('Unable to send email');
-            }
         } catch (Exception $e) {
             throw $e;
         }
